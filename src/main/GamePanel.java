@@ -139,15 +139,15 @@ public class GamePanel extends JPanel implements Runnable {
                 gameState = loseState;
             }
             if (gameState == loseState){
-                ui.drawGameOver(g2);
                 gameThread = null;
+                ui.drawGameOver(g2);
             }
             if (player.gameFinished()){
                 gameState = winState;
             }
             if (gameState == winState){
-                ui.drawWin(g2);
                 gameThread = null;
+                ui.drawWin(g2);
             }
             g2.dispose();
         }

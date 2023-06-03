@@ -22,7 +22,7 @@ public class KeyListener implements java.awt.event.KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode(); //ascii code
+        int keyCode = e.getKeyCode(); //ascii codes
 
         //Menu
         if (gamePanel.gameState == gamePanel.menuState){
