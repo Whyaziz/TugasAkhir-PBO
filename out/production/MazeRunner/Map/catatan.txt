@@ -1,0 +1,309 @@
+package entity;
+
+import main.GamePanel;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
+
+public class Slime extends Entity{
+
+    int worldMonsterX;
+    int worldMonsterY;
+
+
+    Rectangle solidArea;
+
+
+    public Slime(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+
+        setDefaultValues();
+        getMonsterImage();
+        solidArea = new Rectangle(0,0,48,48);
+    }
+
+    public void setDefaultValues(){
+        worldMonsterX = 10*gamePanel.florSize;
+        worldMonsterY = 8*gamePanel.florSize;
+        speed = 1;
+        direction = "right";
+    }
+
+    public void getMonsterImage(){
+        try {
+
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move1_left.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move2_left.png")));
+            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move3_left.png")));
+            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move4_left.png")));
+            left5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move5_left.png")));
+            left6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move6_left.png")));
+
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move1_right.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move2_right.png")));
+            right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move3_right.png")));
+            right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move4_right.png")));
+            right5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move5_right.png")));
+            right6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Monster/move6_right.png")));
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void update(){
+
+        spriteCounter ++;
+        if (spriteCounter > 10){
+            spriteNum += 1;
+            if (spriteNum >= 6){
+                spriteNum = 1;
+            }
+
+            spriteCounter = 0;
+        }
+
+//        switch (direction){
+//            case "up" -> worldMonsterY -= speed;
+//            case "left" -> worldMonsterX -= speed;
+//            case "down" -> worldMonsterY += speed;
+//            case "right" -> worldMonsterX += speed;
+//        }
+
+    }
+
+    public void draw(Graphics2D g2){
+
+        BufferedImage image = null;
+
+        switch (direction) {
+            case ("up") -> {
+
+            }
+            case ("left") -> {
+                if (spriteNum == 1) {
+                    image = left1;
+                }
+                else if (spriteNum == 2) {
+                    image = left2;
+                }
+                else if (spriteNum == 3) {
+                    image = left3;
+                }
+                else if (spriteNum == 4) {
+                    image = left4;
+                }
+                else if (spriteNum == 5) {
+                    image = left5;
+                }
+                else if (spriteNum == 6) {
+                    image = left6;
+                }
+            }
+            case ("down") -> {
+
+            }
+            case ("right") -> {
+                if (spriteNum == 1) {
+                    image = right1;
+                }
+                else if (spriteNum == 2) {
+                    image = right2;
+                }
+                else if (spriteNum == 3) {
+                    image = right3;
+                }
+                else if (spriteNum == 4) {
+                    image = right4;
+                }
+                else if (spriteNum == 5) {
+                    image = right5;
+                }
+                else if (spriteNum == 6) {
+                    image = right6;
+                }
+            }
+        }
+
+        g2.drawImage(image, worldMonsterX, worldMonsterY, gamePanel.florSize, gamePanel.florSize, null);
+
+    }
+
+}
+
+package entity;
+
+import main.GamePanel;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
+
+public class Soldier extends Entity{
+
+    int SoldierworldX;
+    int SoldierorldY;
+
+    public Soldier(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 8;
+
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
+        solidArea.width = 16;
+        solidArea.height = 16;
+
+        setDefaultValues();
+        getEntityImage();
+    }
+
+    @Override
+    public void update() {
+        spriteCounter ++;
+        if (spriteCounter > 10){
+            spriteNum += 1;
+            if (spriteNum >= 6){
+                spriteNum = 1;
+            }
+
+            spriteCounter = 0;
+        }
+
+        System.out.println(SoldierworldX);
+        System.out.println(SoldierorldY);
+    }
+
+    @Override
+    public void setDefaultValues() {
+        SoldierworldX = 10*gamePanel.florSize;
+        SoldierorldY = 8*gamePanel.florSize;
+        speed = 3;
+        direction = "down";
+    }
+
+    @Override
+    public void getEntityImage() {
+
+        try {
+
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/up1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/up2.png")));
+            up3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/up3.png")));
+            up4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/up1.png")));
+            up5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/up2.png")));
+            up6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/up3.png")));
+
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/down1.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/down2.png")));
+            down3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/down3.png")));
+            down4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/down1.png")));
+            down5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/down2.png")));
+            down6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/down3.png")));
+
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/left1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/left2.png")));
+            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/left3.png")));
+            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/left1.png")));
+            left5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/left2.png")));
+            left6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/left3.png")));
+
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/right1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/right2.png")));
+            right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/right3.png")));
+            right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/right1.png")));
+            right5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/right2.png")));
+            right6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Soldier/right3.png")));
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void draw(Graphics2D g2) {
+        BufferedImage image = null;
+
+            switch (direction) {
+                case ("up") -> {
+                    if (spriteNum == 1) {
+                        image = up1;
+                    } else if (spriteNum == 2) {
+                        image = up2;
+                    } else if (spriteNum == 3) {
+                        image = up3;
+                    } else if (spriteNum == 4) {
+                        image = up4;
+                    } else if (spriteNum == 5) {
+                        image = up5;
+                    } else if (spriteNum == 6) {
+                        image = up6;
+                    }
+
+                }
+                case ("left") -> {
+                    if (spriteNum == 1) {
+                        image = left1;
+                    } else if (spriteNum == 2) {
+                        image = left2;
+                    } else if (spriteNum == 3) {
+                        image = left3;
+                    } else if (spriteNum == 4) {
+                        image = left4;
+                    } else if (spriteNum == 5) {
+                        image = left5;
+                    } else if (spriteNum == 6) {
+                        image = left6;
+                    }
+                }
+                case ("down") -> {
+                    if (spriteNum == 1) {
+                        image = down1;
+                    } else if (spriteNum == 2) {
+                        image = down2;
+                    } else if (spriteNum == 3) {
+                        image = down3;
+                    } else if (spriteNum == 4) {
+                        image = down4;
+                    } else if (spriteNum == 5) {
+                        image = down5;
+                    } else if (spriteNum == 6) {
+                        image = down6;
+                    }
+                }
+                case ("right") -> {
+                    if (spriteNum == 1) {
+                        image = right1;
+                    } else if (spriteNum == 2) {
+                        image = right2;
+                    } else if (spriteNum == 3) {
+                        image = right3;
+                    } else if (spriteNum == 4) {
+                        image = right4;
+                    } else if (spriteNum == 5) {
+                        image = right5;
+                    } else if (spriteNum == 6) {
+                        image = right6;
+                    }
+                }
+            }
+        g2.drawImage(image, SoldierworldX, SoldierorldY, gamePanel.florSize, gamePanel.florSize, null);
+    }
+
+    @Override
+    public void gameFinished(Graphics2D g2) {
+
+    }
+}
+
