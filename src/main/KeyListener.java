@@ -75,24 +75,27 @@ public class KeyListener implements java.awt.event.KeyListener {
             //Enter Listener
             if (gamePanel.ui.mapNum == 1) {
                 if (keyCode == KeyEvent.VK_ENTER) {
-                    gamePanel.gameState = gamePanel.map1State;
+                    gamePanel.gameState = gamePanel.playingState;
+                    gamePanel.currentMap = 0;
                 }
             }
             if (gamePanel.ui.mapNum == 2) {
                 if (keyCode == KeyEvent.VK_ENTER) {
-                    gamePanel.gameState = gamePanel.map2State;
+                    gamePanel.gameState = gamePanel.playingState;
+                    gamePanel.currentMap = 1;
                 }
             }
             if (gamePanel.ui.mapNum == 3) {
                 if (keyCode == KeyEvent.VK_ENTER) {
-                    gamePanel.gameState = gamePanel.map3State;
+                    gamePanel.gameState = gamePanel.playingState;
+                    gamePanel.currentMap = 2;
                 }
             }
         }
 
 
         //Movement
-        if (gamePanel.gameState == gamePanel.map1State || gamePanel.gameState == gamePanel.map2State || gamePanel.gameState == gamePanel.map3State){
+        if (gamePanel.gameState == gamePanel.playingState){
             if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP){
                 pressUp = true;
             }

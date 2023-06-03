@@ -79,4 +79,35 @@ public class Ui {
 
     }
 
+    public void drawGameOver(Graphics2D g2) {
+
+        g2.setColor(new Color(0,0,0,150));
+        g2.fillRect(0,0, gamePanel.screenWidth, gamePanel.screenHeight);
+
+        String text1 = "GAME";
+        g2.setFont(retro.deriveFont(150f));
+        g2.setColor(Color.RED);
+        g2.drawString(text1, xCenter/2 + xCenter/4, yCenter - yCenter/4);
+
+        String text2 = "!!!OVER!!!";
+        g2.setFont(retro);
+        g2.setColor(Color.white);
+        g2.drawString(text2, xCenter / 2 + xCenter / 4, yCenter + yCenter / 2);
+    }
+
+    public void drawWin(Graphics2D g2){
+        g2.setColor(new Color(0,0,0,150));
+        g2.fillRect(0,0, gamePanel.screenWidth, gamePanel.screenHeight);
+
+        String text1 = "CONGRATULATION";
+        g2.setFont(retro.deriveFont(120f));
+        g2.setColor(Color.yellow);
+        g2.drawString(text1, xCenter/ 4, yCenter - yCenter / 3);
+
+        String text2 = "You Found The Way";
+        g2.setFont(retro);
+        g2.setColor(Color.WHITE);
+        g2.drawString(text2, xCenter/ 4, yCenter + yCenter / 3);
+    }
+
 }

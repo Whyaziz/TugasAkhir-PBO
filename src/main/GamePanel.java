@@ -24,8 +24,8 @@ public class GamePanel extends JPanel implements Runnable {
     //Map
     public final int worldCol = 66;
     public final int worldRow = 62;
-    public final int worldWidth = worldCol*florSize;
-    public final int worldHeight = worldRow*florSize;
+    public int currentMap = 0;
+    public final int maxMap = 3;
 
     //FPS
     final int fps = 60;
@@ -35,8 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, move);
     TileManager tileManager = new TileManager(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public SuperObjects exitDoor = new SuperObjects();
-    public Entity[] monster = new Entity[20];
+    public SuperObjects[] exitDoor = new SuperObjects[10];
+    public Entity[][] monster = new Entity[maxMap][20];
     public ObjectsSetter objectsSetter = new ObjectsSetter(this);
     public Ui ui = new Ui(this);
 
@@ -45,12 +45,9 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState;
     public final int menuState = 0;
     public final int playState = 1;
-    public final int exitState = 99;
-
-    //map choose
-    public final int map1State = 2;
-    public final int map2State = 3;
-    public final int map3State = 4;
+    public final int playingState = 2;
+    public final int loseState = 99;
+    public final int winState = 100;
 
 
     public GamePanel(){
@@ -62,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setUpGame(){
-        objectsSetter.setObj();
+        objectsSetter.setExit();
         objectsSetter.setMonster();
 
         gameState = menuState;
@@ -110,9 +107,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update(){
         player.update();
-        for (Entity entity : monster) {
-            if (entity != null) {
-                entity.update();
+        for (int i=0; i < monster[1].length; i++) {
+            if (monster[currentMap][i] != null) {
+                monster[currentMap][i].update();
             }
         }
     }
@@ -129,43 +126,29 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playState){
             ui.drawChooseMap(g2);
         }
-        if (gameState == map1State){
+        if (gameState == playingState){
             tileManager.drawImage(g2);
-            exitDoor.draw(g2, this);
-            for (Entity entity : monster) {
-                if (entity != null) {
-                    entity.draw(g2);
+            exitDoor[currentMap].draw(g2, this);
+            for (int i=0; i < monster[1].length; i++) {
+                if (monster[currentMap][i] != null) {
+                    monster[currentMap][i].draw(g2);
                 }
             }
             player.draw(g2);
-            player.gameFinished(g2);
-            player.hitMonster(g2);
-            g2.dispose();
-        }
-        if (gameState == map2State){
-            tileManager.drawImage(g2);
-            exitDoor.draw(g2, this);
-            for (Entity entity : monster) {
-                if (entity != null) {
-                    entity.draw(g2);
-                }
+            if (player.hitMonster()){
+                gameState = loseState;
             }
-            player.draw(g2);
-            player.gameFinished(g2);
-            player.hitMonster(g2);
-            g2.dispose();
-        }
-        if (gameState == map3State){
-            tileManager.drawImage(g2);
-            exitDoor.draw(g2, this);
-            for (Entity entity : monster) {
-                if (entity != null) {
-                    entity.draw(g2);
-                }
+            if (gameState == loseState){
+                ui.drawGameOver(g2);
+                gameThread = null;
             }
-            player.draw(g2);
-            player.gameFinished(g2);
-            player.hitMonster(g2);
+            if (player.gameFinished()){
+                gameState = winState;
+            }
+            if (gameState == winState){
+                ui.drawWin(g2);
+                gameThread = null;
+            }
             g2.dispose();
         }
 

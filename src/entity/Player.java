@@ -339,40 +339,13 @@ public class Player extends Entity{
         }
     }
 
-    public void hitMonster(Graphics2D g2){
-        if (gamePanel.collisionChecker.checkEntity(this, gamePanel.monster)) {
-
-            String text1;
-            int x = gamePanel.screenWidth/4;
-            int y = gamePanel.screenHeight/2;
-
-            text1 = "¡¡¡GAME OVER!!!";
-            g2.setFont(new Font("Arial", Font.BOLD,60));
-            g2.setColor(Color.RED);
-            g2.drawString(text1, x-50, y);
-
-            gamePanel.gameThread = null;
-        }
+    public boolean hitMonster(){
+        boolean hit = gamePanel.collisionChecker.checkEntity(this, gamePanel.monster);
+        return hit;
     }
 
-    public void gameFinished(Graphics2D g2){
-
-        if (gamePanel.collisionChecker.checkExit(this, true)){
-
-            String text1, text2;
-            int x = gamePanel.screenWidth / 4;
-            int y = gamePanel.screenHeight / 4;
-
-            text1 = "CONGRATULATIONS!";
-            g2.setFont(new Font("Arial", Font.BOLD, 40));
-            g2.setColor(Color.ORANGE);
-            g2.drawString(text1, x, y);
-
-            text2 = "You Found The Way";
-            g2.setColor(Color.WHITE);
-            g2.drawString(text2, x, y + 2 * y);
-
-            gamePanel.gameThread = null;
-        }
+    public boolean gameFinished(){
+        boolean win = gamePanel.collisionChecker.checkExit(this, true);
+        return win;
     }
 }

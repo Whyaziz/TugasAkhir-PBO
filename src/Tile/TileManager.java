@@ -13,18 +13,20 @@ import java.util.Objects;
 public class TileManager {
     GamePanel gamePanel;
     public Tile[] tiles;
-    public int[][] mapTileNum;
+    public int[][][] mapTileNum;
 
     public TileManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.tiles = new Tile[36];
-        this.mapTileNum = new int[gamePanel.worldCol][gamePanel.worldRow];
+        this.mapTileNum = new int[gamePanel.maxMap][gamePanel.worldCol][gamePanel.worldRow];
 
         getTileImage();
-        loadMap("/Map/Map_3.0.txt");
+        loadMap("/Map/Map_1.0.txt",0);
+        loadMap("/Map/Map_2.0.txt",1);
+        loadMap("/Map/Map_3.0.txt",2);
     }
 
-    public void loadMap(String mapPath){
+    public void loadMap(String mapPath, int map){
         try {
             InputStream is = getClass().getResourceAsStream(mapPath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -39,7 +41,7 @@ public class TileManager {
                     String[] number = line.split(" ");
 
                     int num = Integer.parseInt(number[colMap]);
-                    mapTileNum[colMap][rowMap] = num;
+                    mapTileNum[map][colMap][rowMap] = num;
                     colMap++;
                 }
                 if (colMap == gamePanel.worldCol){
@@ -195,7 +197,7 @@ public class TileManager {
 
         while (col < gamePanel.worldCol && row < gamePanel.worldRow){
 
-            int tileNum = mapTileNum[col][row];
+            int tileNum = mapTileNum[gamePanel.currentMap][col][row];
 
             int worldX = col* gamePanel.florSize;
             int worldY = row* gamePanel.florSize;
