@@ -106,10 +106,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
-        player.update();
-        for (int i=0; i < monster[1].length; i++) {
-            if (monster[currentMap][i] != null) {
-                monster[currentMap][i].update();
+
+        if (gameState == playingState){
+            player.update();
+            for (int i=0; i < monster[1].length; i++) {
+                if (monster[currentMap][i] != null) {
+                    monster[currentMap][i].update();
+                }
             }
         }
     }
@@ -126,7 +129,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playState){
             ui.drawChooseMap(g2);
         }
-        if (gameState == playingState){
+        if (gameState == playingState || gameState == loseState || gameState == winState){
             tileManager.drawImage(g2);
             exitDoor[currentMap].draw(g2, this);
             for (int i=0; i < monster[1].length; i++) {
@@ -139,17 +142,23 @@ public class GamePanel extends JPanel implements Runnable {
                 gameState = loseState;
             }
             if (gameState == loseState){
-                gameThread = null;
                 ui.drawGameOver(g2);
             }
             if (player.gameFinished()){
                 gameState = winState;
             }
             if (gameState == winState){
-                gameThread = null;
                 ui.drawWin(g2);
             }
             g2.dispose();
+        }
+
+        if (gameState == winState || gameState == loseState){
+            if (move.pressEnter){
+                gameState = menuState;
+                ui.drawMenuScreen(g2);
+                player.setDefaultValues();
+            }
         }
 
     }

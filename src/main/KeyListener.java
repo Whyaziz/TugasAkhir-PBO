@@ -10,6 +10,7 @@ public class KeyListener implements java.awt.event.KeyListener {
     public boolean pressLeft;
     public boolean pressDown;
     public boolean pressRight;
+    public boolean pressEnter;
 
     public KeyListener(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -31,6 +32,7 @@ public class KeyListener implements java.awt.event.KeyListener {
             if (gamePanel.ui.menuNum == 1){
                 if (keyCode == KeyEvent.VK_ENTER){
                     gamePanel.gameState = gamePanel.playState;
+                    gamePanel.ui.menuNum = 0;
                 }
             }
             if (gamePanel.ui.menuNum == 2){
@@ -77,18 +79,21 @@ public class KeyListener implements java.awt.event.KeyListener {
                 if (keyCode == KeyEvent.VK_ENTER) {
                     gamePanel.gameState = gamePanel.playingState;
                     gamePanel.currentMap = 0;
+                    gamePanel.ui.mapNum = 0;
                 }
             }
             if (gamePanel.ui.mapNum == 2) {
                 if (keyCode == KeyEvent.VK_ENTER) {
                     gamePanel.gameState = gamePanel.playingState;
                     gamePanel.currentMap = 1;
+                    gamePanel.ui.mapNum = 0;
                 }
             }
             if (gamePanel.ui.mapNum == 3) {
                 if (keyCode == KeyEvent.VK_ENTER) {
                     gamePanel.gameState = gamePanel.playingState;
                     gamePanel.currentMap = 2;
+                    gamePanel.ui.mapNum = 0;
                 }
             }
         }
@@ -109,6 +114,9 @@ public class KeyListener implements java.awt.event.KeyListener {
                 pressRight = true;
             }
         }
+        if (keyCode == KeyEvent.VK_ENTER){
+            pressEnter = true;
+        }
     }
 
     @Override
@@ -126,6 +134,9 @@ public class KeyListener implements java.awt.event.KeyListener {
         }
         if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT){
             pressRight = false;
+        }
+        if (keyCode == KeyEvent.VK_ENTER){
+            pressEnter = false;
         }
     }
 }

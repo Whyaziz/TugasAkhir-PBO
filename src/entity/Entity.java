@@ -126,7 +126,7 @@ public class Entity {
                 }
             }
 
-            if (!isCollisionOn){
+            if (!isCollisionOn && gamePanel.gameState==gamePanel.playingState){
                 switch (direction){
                     case "up" -> worldY -= speed;
                     case "left" -> worldX -= speed;

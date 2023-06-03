@@ -72,7 +72,7 @@ public class Player extends Entity{
 
 
 
-        if (!isCollisionOn){
+        if (!isCollisionOn && gamePanel.gameState == gamePanel.playingState){
             if (keyListener.pressUp|| keyListener.pressLeft|| keyListener.pressDown|| keyListener.pressRight){
                 switch (direction){
                     case "up" -> worldY -= speed;
