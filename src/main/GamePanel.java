@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int menuState = 0;
     public final int playState = 1;
     public final int playingState = 2;
+    public final int pauseState = 3;
     public final int loseState = 99;
     public final int winState = 100;
 
@@ -128,7 +129,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playState){
             ui.drawChooseMap(g2);
         }
-        if (gameState == playingState || gameState == loseState || gameState == winState){
+        if (gameState == playingState || gameState == loseState || gameState == winState || gameState == pauseState){
             tileManager.drawImage(g2);
             exitDoor[currentMap].draw(g2, this);
             for (int i=0; i < monster[1].length; i++) {
@@ -149,6 +150,9 @@ public class GamePanel extends JPanel implements Runnable {
             if (gameState == winState){
                 ui.drawWin(g2);
             }
+            if (gameState == pauseState){
+                ui.drawPause(g2);
+            }
             g2.dispose();
         }
 
@@ -157,6 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
                 gameState = menuState;
                 ui.drawMenuScreen(g2);
                 player.setDefaultValues();
+                objectsSetter.setDefault();
             }
         }
 

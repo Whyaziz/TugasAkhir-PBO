@@ -73,7 +73,7 @@ public class Goblin extends entity.Entity implements IMovement{
         Random random = new Random();
         int i = random.nextInt(100)+1;
 
-        if (actionCounter == 50){
+        if (actionCounter == 40){
             if (i<=25){
                 direction = "up";
             }

@@ -101,6 +101,33 @@ public class KeyListener implements java.awt.event.KeyListener {
             }
         }
 
+        if (gamePanel.gameState == gamePanel.pauseState){
+            if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP){
+                gamePanel.ui.pauseNum--;
+                if (gamePanel.ui.pauseNum < 1){
+                    gamePanel.ui.pauseNum = 3;
+                }
+            }
+            if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN){
+                gamePanel.ui.pauseNum++;
+                if (gamePanel.ui.pauseNum > 3){
+                    gamePanel.ui.pauseNum = 1;
+                }
+            }
+
+            if (keyCode == KeyEvent.VK_ENTER){
+                if (gamePanel.ui.pauseNum == 1){
+                    gamePanel.gameState = gamePanel.menuState;
+                }
+                if (gamePanel.ui.pauseNum == 2){
+                    gamePanel.gameState = gamePanel.playingState;
+                }
+                if (gamePanel.ui.pauseNum == 3){
+                    System.exit(0);
+                }
+            }
+        }
+
 
         //Movement
         if (gamePanel.gameState == gamePanel.playingState){
@@ -119,6 +146,9 @@ public class KeyListener implements java.awt.event.KeyListener {
         }
         if (keyCode == KeyEvent.VK_ENTER){
             pressEnter = true;
+        }
+        if (keyCode == KeyEvent.VK_ESCAPE){
+            gamePanel.gameState = gamePanel.pauseState;
         }
     }
 
