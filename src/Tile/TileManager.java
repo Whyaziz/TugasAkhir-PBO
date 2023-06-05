@@ -21,9 +21,9 @@ public class TileManager {
         this.mapTileNum = new int[gamePanel.maxMap][gamePanel.worldCol][gamePanel.worldRow];
 
         getTileImage();
-        loadMap("/Map/Map_1.0.txt",0);
+        loadMap("/Map/Map1.txt",0);
         loadMap("/Map/Map_2.0.txt",1);
-        loadMap("/Map/Map_3.0.txt",2);
+        loadMap("/Map/Map3.txt",2);
     }
 
     public void loadMap(String mapPath, int map){

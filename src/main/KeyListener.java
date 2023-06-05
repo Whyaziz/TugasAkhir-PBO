@@ -80,6 +80,7 @@ public class KeyListener implements java.awt.event.KeyListener {
                     gamePanel.gameState = gamePanel.playingState;
                     gamePanel.currentMap = 0;
                     gamePanel.ui.mapNum = 0;
+                    gamePanel.player.setDefaultValues();
                 }
             }
             if (gamePanel.ui.mapNum == 2) {
@@ -87,6 +88,7 @@ public class KeyListener implements java.awt.event.KeyListener {
                     gamePanel.gameState = gamePanel.playingState;
                     gamePanel.currentMap = 1;
                     gamePanel.ui.mapNum = 0;
+                    gamePanel.player.setDefaultValues();
                 }
             }
             if (gamePanel.ui.mapNum == 3) {
@@ -94,6 +96,7 @@ public class KeyListener implements java.awt.event.KeyListener {
                     gamePanel.gameState = gamePanel.playingState;
                     gamePanel.currentMap = 2;
                     gamePanel.ui.mapNum = 0;
+                    gamePanel.player.setDefaultValues();
                 }
             }
         }

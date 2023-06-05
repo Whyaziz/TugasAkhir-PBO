@@ -38,13 +38,22 @@ public class Player extends Entity{
         solidArea.width = 16;
         solidArea.height = 16;
 
-        setDefaultValues();
         getEntityImage();
     }
 
     public void setDefaultValues(){
-        worldX = 10*gamePanel.florSize;
-        worldY = 8*gamePanel.florSize;
+        if (gamePanel.currentMap == 0){
+            worldX = 10*gamePanel.florSize;
+            worldY = 8*gamePanel.florSize;
+        }
+        if (gamePanel.currentMap == 1){
+            worldX = 2*gamePanel.florSize;
+            worldY = 2*gamePanel.florSize;
+        }
+        if (gamePanel.currentMap == 2){
+            worldX = 32*gamePanel.florSize;
+            worldY = 22*gamePanel.florSize;
+        }
         speed = 3;
         direction = "down";
     }

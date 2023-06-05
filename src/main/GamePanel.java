@@ -22,8 +22,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     //Map
-    public final int worldCol = 66;
-    public final int worldRow = 62;
+    public final int worldCol = 150;
+    public final int worldRow = 150;
     public int currentMap = 0;
     public final int maxMap = 3;
 
@@ -31,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int fps = 60;
 
     //Objects
+    public Ui ui = new Ui(this);
     KeyListener move = new KeyListener(this);
     public Player player = new Player(this, move);
     TileManager tileManager = new TileManager(this);
@@ -38,8 +39,6 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperObjects[] exitDoor = new SuperObjects[10];
     public Entity[][] monster = new Entity[maxMap][20];
     public ObjectsSetter objectsSetter = new ObjectsSetter(this);
-    public Ui ui = new Ui(this);
-
 
     //GameState
     public int gameState;
