@@ -47,8 +47,8 @@ public class Player extends Entity{
             worldY = 8*gamePanel.florSize;
         }
         if (gamePanel.currentMap == 1){
-            worldX = 2*gamePanel.florSize;
-            worldY = 2*gamePanel.florSize;
+            worldX = 19*gamePanel.florSize;
+            worldY = 19*gamePanel.florSize;
         }
         if (gamePanel.currentMap == 2){
             worldX = 32*gamePanel.florSize;

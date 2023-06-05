@@ -22,7 +22,7 @@ public class TileManager {
 
         getTileImage();
         loadMap("/Map/Map1.txt",0);
-        loadMap("/Map/Map_2.0.txt",1);
+        loadMap("/Map/Map2.txt",1);
         loadMap("/Map/Map3.txt",2);
     }
 

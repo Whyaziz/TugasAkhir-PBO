@@ -16,7 +16,6 @@ public class Main {
 
         gamePanel.setUpGame();
         gamePanel.startGame();
-        
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
