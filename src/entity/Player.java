@@ -103,6 +103,7 @@ public class Player extends Entity{
         }
     }
 
+    @Override
     public void draw(Graphics2D g2){
 
         BufferedImage image = null;

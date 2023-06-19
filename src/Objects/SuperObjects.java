@@ -5,7 +5,7 @@ import main.GamePanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SuperObjects {
+public abstract class SuperObjects {
     public BufferedImage image;
     String name;
     public Boolean collision = false;
@@ -15,8 +15,9 @@ public class SuperObjects {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
 
-    public void draw(Graphics2D g2, GamePanel gamePanel){
+    public abstract void getImage();
 
+    public void draw(Graphics2D g2, GamePanel gamePanel){
         int screenX = targetWorldX - gamePanel.player.worldX + gamePanel.player.screenX; //menentukan map indeks x berapa yang harus digambar
         int screenY = targetWorldY - gamePanel.player.worldY + gamePanel.player.screenY; //menentukan map indeks x berapa yang harus digambar
 

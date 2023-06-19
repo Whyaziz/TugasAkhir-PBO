@@ -1,6 +1,6 @@
 package main;
 
-import Objects.SuperObjects;
+import Objects.ExitDoor;
 import Tile.TileManager;
 import entity.Entity;
 import entity.Player;
@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, move);
     TileManager tileManager = new TileManager(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public SuperObjects[] exitDoor = new SuperObjects[10];
+    public ExitDoor[] exitDoor = new ExitDoor[10];
     public Entity[][] monster = new Entity[maxMap][20];
     public ObjectsSetter objectsSetter = new ObjectsSetter(this);
 
