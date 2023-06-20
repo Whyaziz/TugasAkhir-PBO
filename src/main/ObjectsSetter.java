@@ -4,10 +4,14 @@ import Monster.Demon;
 import Monster.Goblin;
 import Monster.Slime;
 import Objects.ExitDoor;
+import Objects.TeleportMerah;
+import Objects.TeleportUngu;
 
 
 public class ObjectsSetter {
     GamePanel gamePanel;
+    public int xTeleMerah, xTeleUngu;
+    public int yTeleMerah, yTeleUngu;
 
     public ObjectsSetter(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -28,6 +32,35 @@ public class ObjectsSetter {
         gamePanel.exitDoor[mapNum] = new ExitDoor();
         gamePanel.exitDoor[mapNum].targetWorldX = 96 * gamePanel.florSize;
         gamePanel.exitDoor[mapNum].targetWorldY = 31 * gamePanel.florSize;
+    }
+
+    public void setTeleport(){
+        int mapNum = 0;
+        gamePanel.teleportMerah[mapNum] = new TeleportMerah();
+        gamePanel.teleportMerah[mapNum].targetWorldX = 46 * gamePanel.florSize;
+        gamePanel.teleportMerah[mapNum].targetWorldY = 10 * gamePanel.florSize;
+
+        gamePanel.teleportUngu[mapNum] = new TeleportUngu();
+        gamePanel.teleportUngu[mapNum].targetWorldX = 11 * gamePanel.florSize;
+        gamePanel.teleportUngu[mapNum].targetWorldY = 45 * gamePanel.florSize;
+
+        mapNum = 1;
+        gamePanel.teleportMerah[mapNum] = new TeleportMerah();
+        gamePanel.teleportMerah[mapNum].targetWorldX = 19 * gamePanel.florSize;
+        gamePanel.teleportMerah[mapNum].targetWorldY = 46 * gamePanel.florSize;
+
+        gamePanel.teleportUngu[mapNum] = new TeleportUngu();
+        gamePanel.teleportUngu[mapNum].targetWorldX = 93 * gamePanel.florSize;
+        gamePanel.teleportUngu[mapNum].targetWorldY = 25 * gamePanel.florSize;
+
+        mapNum = 2;
+        gamePanel.teleportMerah[mapNum] = new TeleportMerah();
+        gamePanel.teleportMerah[mapNum].targetWorldX = 12 * gamePanel.florSize;
+        gamePanel.teleportMerah[mapNum].targetWorldY = 37 * gamePanel.florSize;
+
+        gamePanel.teleportUngu[mapNum] = new TeleportUngu();
+        gamePanel.teleportUngu[mapNum].targetWorldX = 47 * gamePanel.florSize;
+        gamePanel.teleportUngu[mapNum].targetWorldY = 13 * gamePanel.florSize;
     }
 
     public void setMonster(){

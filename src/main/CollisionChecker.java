@@ -105,6 +105,94 @@ public class CollisionChecker {
         return touched;
     }
 
+    public boolean checkTeleportMerah(Entity entity, boolean teleportMerah){
+        boolean touched = false;
+        entity.solidArea.x = entity.solidArea.x + entity.worldX;
+        entity.solidArea.y = entity.solidArea.y + entity.worldY;
+
+        gamePanel.teleportMerah[gamePanel.currentMap].solidArea.x = gamePanel.teleportMerah[gamePanel.currentMap].solidArea.x +gamePanel.teleportMerah[gamePanel.currentMap].targetWorldX;
+        gamePanel.teleportMerah[gamePanel.currentMap].solidArea.y = gamePanel.teleportMerah[gamePanel.currentMap].solidArea.y +gamePanel.teleportMerah[gamePanel.currentMap].targetWorldY;
+
+        switch (entity.direction) {
+            case "up" -> {
+                entity.solidArea.y -= entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportMerah[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+            case "down" -> {
+                entity.solidArea.y += entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportMerah[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+            case "left" -> {
+                entity.solidArea.x -= entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportMerah[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+            case "right" -> {
+                entity.solidArea.x += entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportMerah[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+
+        }
+
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        gamePanel.teleportMerah[gamePanel.currentMap].solidArea.x = gamePanel.teleportMerah[gamePanel.currentMap].solidAreaDefaultX;
+        gamePanel.teleportMerah[gamePanel.currentMap].solidArea.y = gamePanel.teleportMerah[gamePanel.currentMap].solidAreaDefaultY;
+
+        return touched;
+    }
+
+    public boolean checkTeleportUngu(Entity entity, boolean teleportUngu){
+        boolean touched = false;
+        entity.solidArea.x = entity.solidArea.x + entity.worldX;
+        entity.solidArea.y = entity.solidArea.y + entity.worldY;
+
+        gamePanel.teleportUngu[gamePanel.currentMap].solidArea.x = gamePanel.teleportUngu[gamePanel.currentMap].solidArea.x +gamePanel.teleportUngu[gamePanel.currentMap].targetWorldX;
+        gamePanel.teleportUngu[gamePanel.currentMap].solidArea.y = gamePanel.teleportUngu[gamePanel.currentMap].solidArea.y +gamePanel.teleportUngu[gamePanel.currentMap].targetWorldY;
+
+        switch (entity.direction) {
+            case "up" -> {
+                entity.solidArea.y -= entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportUngu[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+            case "down" -> {
+                entity.solidArea.y += entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportUngu[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+            case "left" -> {
+                entity.solidArea.x -= entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportUngu[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+            case "right" -> {
+                entity.solidArea.x += entity.speed;
+                if (entity.solidArea.intersects(gamePanel.teleportUngu[gamePanel.currentMap].solidArea)) {
+                    touched = true;
+                }
+            }
+
+        }
+
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        gamePanel.teleportUngu[gamePanel.currentMap].solidArea.x = gamePanel.teleportUngu[gamePanel.currentMap].solidAreaDefaultX;
+        gamePanel.teleportUngu[gamePanel.currentMap].solidArea.y = gamePanel.teleportUngu[gamePanel.currentMap].solidAreaDefaultY;
+
+        return touched;
+    }
+
     public boolean checkEntity(Entity entity, Entity[][] target){
         boolean touched = false;
 

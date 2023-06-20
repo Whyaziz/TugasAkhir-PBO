@@ -77,8 +77,7 @@ public class Player extends Entity{
         isCollisionOn = false;
         gamePanel.collisionChecker.checkTile(this);
 
-        //check obj
-
+        teleport();
 
 
         if (!isCollisionOn && gamePanel.gameState == gamePanel.playingState){
@@ -357,5 +356,66 @@ public class Player extends Entity{
     public boolean gameFinished(){
         boolean win = gamePanel.collisionChecker.checkExit(this, true);
         return win;
+    }
+
+    public void teleport(){
+
+        if (gamePanel.currentMap == 0){
+            gamePanel.objectsSetter.xTeleMerah = 46;
+            gamePanel.objectsSetter.yTeleMerah = 10;
+            gamePanel.objectsSetter.xTeleUngu = 11;
+            gamePanel.objectsSetter.yTeleUngu = 45;
+        } else if (gamePanel.currentMap == 1) {
+            gamePanel.objectsSetter.xTeleMerah = 19;
+            gamePanel.objectsSetter.yTeleMerah = 46;
+            gamePanel.objectsSetter.xTeleUngu = 93;
+            gamePanel.objectsSetter.yTeleUngu = 25;
+        } else if (gamePanel.currentMap == 2) {
+            gamePanel.objectsSetter.xTeleMerah = 12;
+            gamePanel.objectsSetter.yTeleMerah = 37;
+            gamePanel.objectsSetter.xTeleUngu = 47;
+            gamePanel.objectsSetter.yTeleUngu = 13;
+        }
+
+        if (gamePanel.collisionChecker.checkTeleportMerah(this, true)) {
+            switch (direction) {
+                case "up" -> {
+                    worldX = gamePanel.objectsSetter.xTeleUngu * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleUngu - 1) * gamePanel.florSize;
+                }
+                case "left" -> {
+                    worldX = (gamePanel.objectsSetter.xTeleUngu - 1) * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleUngu) * gamePanel.florSize;
+                }
+                case "down" -> {
+                    worldX = gamePanel.objectsSetter.xTeleUngu * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleUngu + 1) * gamePanel.florSize;
+                }
+                case "right" -> {
+                    worldX = (gamePanel.objectsSetter.xTeleUngu + 1) * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleUngu) * gamePanel.florSize;
+                }
+            }
+        }
+        if (gamePanel.collisionChecker.checkTeleportUngu(this, true)) {
+            switch (direction) {
+                case "up" -> {
+                    worldX = gamePanel.objectsSetter.xTeleMerah * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleMerah - 1) * gamePanel.florSize;
+                }
+                case "left" -> {
+                    worldX = (gamePanel.objectsSetter.xTeleMerah - 1) * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleMerah) * gamePanel.florSize;
+                }
+                case "down" -> {
+                    worldX = gamePanel.objectsSetter.xTeleMerah * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleMerah + 1) * gamePanel.florSize;
+                }
+                case "right" -> {
+                    worldX = (gamePanel.objectsSetter.xTeleMerah + 1) * gamePanel.florSize;
+                    worldY = (gamePanel.objectsSetter.yTeleMerah) * gamePanel.florSize;
+                }
+            }
+        }
     }
 }

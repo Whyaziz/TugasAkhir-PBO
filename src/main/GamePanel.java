@@ -1,6 +1,8 @@
 package main;
 
 import Objects.ExitDoor;
+import Objects.TeleportMerah;
+import Objects.TeleportUngu;
 import Tile.TileManager;
 import entity.Entity;
 import entity.Player;
@@ -37,6 +39,8 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileManager = new TileManager(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public ExitDoor[] exitDoor = new ExitDoor[10];
+    public TeleportMerah[] teleportMerah = new TeleportMerah[4];
+    public TeleportUngu[] teleportUngu = new TeleportUngu[4];
     public Entity[][] monster = new Entity[maxMap][20];
     public ObjectsSetter objectsSetter = new ObjectsSetter(this);
 
@@ -61,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame(){
         objectsSetter.setExit();
         objectsSetter.setMonster();
+        objectsSetter.setTeleport();
 
         gameState = menuState;
     }
@@ -132,6 +137,8 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playingState || gameState == loseState || gameState == winState || gameState == pauseState){
             tileManager.drawImage(g2);
             exitDoor[currentMap].draw(g2, this);
+            teleportUngu[currentMap].draw(g2,this);
+            teleportMerah[currentMap].draw(g2,this);
             for (int i=0; i < monster[1].length; i++) {
                 if (monster[currentMap][i] != null) {
                     monster[currentMap][i].draw(g2);
